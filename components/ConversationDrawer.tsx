@@ -36,6 +36,7 @@ const STATUS_LABELS: Record<string, string> = {
   novo: "Novo",
   em_conversa: "Em conversa",
   agendado: "Agendado",
+  handoff: "Handoff",
   concluido: "Concluído",
   perdido: "Perdido",
 };
@@ -44,6 +45,7 @@ const STATUS_COLORS: Record<string, string> = {
   novo: "bg-blue-500/20 text-blue-300 border border-blue-500/30",
   em_conversa: "bg-amber-500/20 text-amber-300 border border-amber-500/30",
   agendado: "bg-violet-500/20 text-violet-300 border border-violet-500/30",
+  handoff: "bg-orange-500/20 text-orange-300 border border-orange-500/30",
   concluido: "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30",
   perdido: "bg-red-500/20 text-red-300 border border-red-500/30",
 };
@@ -57,7 +59,7 @@ function StatusBadge({ status }: { status: string }) {
   );
 }
 
-const STATUS_OPTIONS = ["novo", "em_conversa", "agendado", "concluido", "perdido"] as const;
+const STATUS_OPTIONS = ["novo", "em_conversa", "agendado", "handoff", "concluido", "perdido"] as const;
 
 export default function ConversationDrawer({ lead, onClose }: Props) {
   const [history, setHistory] = useState<HistoryMessage[]>([]);
@@ -198,7 +200,20 @@ export default function ConversationDrawer({ lead, onClose }: Props) {
                   <p className="text-zinc-500 text-xs uppercase tracking-wide mb-1">Último contato</p>
                   <p className="text-zinc-200 font-medium">{timeAgo(lead.last_message_at)}</p>
                 </div>
+                <div>
+                  <p className="text-zinc-500 text-xs uppercase tracking-wide mb-1">Preferência</p>
+                  <p className="text-zinc-200 font-medium">{[lead.preferred_day, lead.preferred_time].filter(Boolean).join(" · ") || "—"}</p>
+                </div>
+                <div>
+                  <p className="text-zinc-500 text-xs uppercase tracking-wide mb-1">Handoff</p>
+                  <p className="text-zinc-200 font-medium">{lead.handoff_requested ? "Equipe humana" : "Bot ativo"}</p>
+                </div>
               </div>
+              {lead.handoff_reason && (
+                <div className="rounded-lg border border-orange-500/20 bg-orange-500/10 p-3 text-xs text-orange-200">
+                  {lead.handoff_reason}
+                </div>
+              )}
             </div>
 
             {/* Conversation history */}

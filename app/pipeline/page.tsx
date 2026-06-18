@@ -10,6 +10,7 @@ const STATUSES = [
   { key: "novo", label: "Novo", color: "text-zinc-400", border: "border-zinc-400/30" },
   { key: "em_conversa", label: "Em Conversa", color: "text-blue-400", border: "border-blue-400/30" },
   { key: "agendado", label: "Agendado", color: "text-emerald-400", border: "border-emerald-400/30" },
+  { key: "handoff", label: "Handoff", color: "text-orange-400", border: "border-orange-400/30" },
   { key: "concluido", label: "Concluído", color: "text-green-400", border: "border-green-400/30" },
 ] as const;
 

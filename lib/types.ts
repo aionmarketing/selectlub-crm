@@ -8,6 +8,10 @@ export interface Lead {
   unit_preference: string | null;
   status: string;
   scheduled_at: string | null;
+  preferred_day: string | null;
+  preferred_time: string | null;
+  handoff_requested: boolean;
+  handoff_reason: string | null;
   notes: string | null;
   created_at: string;
   updated_at: string | null;
@@ -32,6 +36,7 @@ export interface Stats {
   novo: number;
   em_conversa: number;
   agendado: number;
+  handoff: number;
   concluido: number;
   sao_judas: number;
   santa_terezinha: number;

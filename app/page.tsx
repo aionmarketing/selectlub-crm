@@ -67,6 +67,11 @@ const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string }
     color: "text-emerald-300",
     bg: "bg-emerald-950/60",
   },
+  handoff: {
+    label: "Handoff",
+    color: "text-orange-300",
+    bg: "bg-orange-950/60",
+  },
   concluido: {
     label: "Concluído",
     color: "text-green-400",
@@ -203,7 +208,7 @@ export default function DashboardPage() {
       )}
 
       {/* ── 2. Stats grid ─────────────────────────────────────────────────── */}
-      <div className="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+      <div className="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-7">
         {/* Total */}
         <div className="rounded-xl border border-zinc-800 bg-zinc-900/70 px-5 py-4">
           <p className="text-3xl font-bold tracking-tight text-white">
@@ -242,6 +247,14 @@ export default function DashboardPage() {
             {s?.agendado ?? "—"}
           </p>
           <p className="mt-0.5 text-sm font-medium text-zinc-400">Agendados</p>
+        </div>
+
+        {/* Concluídos */}
+        <div className="rounded-xl border border-zinc-800 bg-zinc-900/70 px-5 py-4">
+          <p className="text-3xl font-bold tracking-tight text-orange-400">
+            {s?.handoff ?? "—"}
+          </p>
+          <p className="mt-0.5 text-sm font-medium text-zinc-400">Handoff</p>
         </div>
 
         {/* Concluídos */}

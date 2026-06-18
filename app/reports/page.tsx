@@ -23,6 +23,7 @@ const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string }
   novo: { label: "Novo", color: "bg-zinc-500", bg: "bg-zinc-500/20" },
   em_conversa: { label: "Em Conversa", color: "bg-blue-500", bg: "bg-blue-500/20" },
   agendado: { label: "Agendado", color: "bg-emerald-500", bg: "bg-emerald-500/20" },
+  handoff: { label: "Handoff", color: "bg-orange-500", bg: "bg-orange-500/20" },
   concluido: { label: "Concluído", color: "bg-green-500", bg: "bg-green-500/20" },
   perdido: { label: "Perdido", color: "bg-red-500", bg: "bg-red-500/20" },
 };
@@ -177,7 +178,7 @@ function FunnelBar({ statuses }: { statuses: StatusRow[] }) {
     return <p className="text-sm text-zinc-600 text-center py-4">Nenhum dado</p>;
   }
 
-  const ordered = ["novo", "em_conversa", "agendado", "concluido", "perdido"];
+  const ordered = ["novo", "em_conversa", "agendado", "handoff", "concluido", "perdido"];
   const sorted = [...statuses].sort(
     (a, b) => ordered.indexOf(a.status) - ordered.indexOf(b.status)
   );

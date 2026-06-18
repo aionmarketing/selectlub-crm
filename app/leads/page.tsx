@@ -57,6 +57,7 @@ const STATUS_LABELS: Record<string, string> = {
   novo: "Novo",
   em_conversa: "Em conversa",
   agendado: "Agendado",
+  handoff: "Handoff",
   concluido: "Concluído",
   perdido: "Perdido",
 };
@@ -65,6 +66,7 @@ const STATUS_COLORS: Record<string, string> = {
   novo: "bg-blue-500/20 text-blue-300 border border-blue-500/30",
   em_conversa: "bg-amber-500/20 text-amber-300 border border-amber-500/30",
   agendado: "bg-violet-500/20 text-violet-300 border border-violet-500/30",
+  handoff: "bg-orange-500/20 text-orange-300 border border-orange-500/30",
   concluido: "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30",
   perdido: "bg-red-500/20 text-red-300 border border-red-500/30",
 };
@@ -128,6 +130,8 @@ export default function LeadsPage() {
         l.vehicle_model,
         l.vehicle_type,
         l.unit_preference,
+        l.preferred_day,
+        l.preferred_time,
       ]
         .filter(Boolean)
         .join(" ")
@@ -249,6 +253,9 @@ export default function LeadsPage() {
                     Unidade
                   </th>
                   <th className="text-left text-xs font-semibold text-zinc-400 uppercase tracking-wide px-4 py-3 border-b border-zinc-800">
+                    Horário
+                  </th>
+                  <th className="text-left text-xs font-semibold text-zinc-400 uppercase tracking-wide px-4 py-3 border-b border-zinc-800">
                     Status
                   </th>
                   <th className="text-center text-xs font-semibold text-zinc-400 uppercase tracking-wide px-4 py-3 border-b border-zinc-800">
@@ -265,7 +272,7 @@ export default function LeadsPage() {
               <tbody className="divide-y divide-zinc-800/60">
                 {filtered.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="text-center py-10 text-zinc-500">
+                    <td colSpan={8} className="text-center py-10 text-zinc-500">
                       Nenhum lead encontrado com os filtros selecionados.
                     </td>
                   </tr>
@@ -308,6 +315,10 @@ export default function LeadsPage() {
                       {/* Unidade */}
                       <td className="px-4 py-3 text-zinc-300 whitespace-nowrap">
                         {lead.unit_preference ?? "—"}
+                      </td>
+                      {/* Horário */}
+                      <td className="px-4 py-3 text-zinc-300 whitespace-nowrap">
+                        {[lead.preferred_day, lead.preferred_time].filter(Boolean).join(" · ") || "—"}
                       </td>
                       {/* Status */}
                       <td className="px-4 py-3">

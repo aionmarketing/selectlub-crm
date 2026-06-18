@@ -1,21 +1,25 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { Sidebar } from "@/components/Sidebar";
 
 export const metadata: Metadata = {
-  title: "Select Lub — CRM",
+  title: "SelectLub CRM",
   description: "Central de Leads WhatsApp — Select Lub Piracicaba",
   icons: { icon: "/favicon.ico" },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: "#080a0f",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body className="min-h-screen font-sans antialiased bg-zinc-950 text-zinc-100">
-        <div className="flex min-h-screen">
-          <Sidebar />
-          <main className="flex-1 min-w-0 overflow-y-auto">{children}</main>
-        </div>
+      <body style={{ margin: 0, padding: 0, background: "#080a0f", color: "#f0f6fc", overscrollBehavior: "none" }}>
+        {children}
       </body>
     </html>
   );
